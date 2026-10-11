@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="参加者を入力して勝ち上がり式のトーナメント表を作成・記録できるツール">
+  <title>トーナメント表作成</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header class="hero">
+    <div><p class="badge">TOURNAMENT MAKER</p><h1>トーナメント表作成</h1><p>参加者を配置し、各試合の勝者を選んで優勝まで記録できます。</p></div>
+    <a class="home" href="https://kentaro0810.github.io/secret-links/">ツール集に戻る</a>
+  </header>
+
+  <section class="setup-grid">
+    <section class="card input-card">
+      <div class="heading"><div><p class="step">STEP 1</p><h2>参加者を入力</h2></div><strong id="countBadge" class="count">0組</strong></div>
+      <label for="participants">1行に1組ずつ入力（2〜16組）</label>
+      <textarea id="participants" rows="12" placeholder="例：&#10;チームA&#10;チームB&#10;チームC&#10;チームD"></textarea>
+      <p id="inputMessage" class="message" aria-live="polite"></p>
+      <div class="buttons">
+        <button id="sampleButton" class="secondary" type="button">8組のサンプル</button>
+        <button id="saveButton" class="secondary" type="button">入力を保存</button>
+        <button id="clearButton" class="danger" type="button">すべて消去</button>
+      </div>
+    </section>
+
+    <section class="card settings-card">
+      <p class="step">STEP 2</p><h2>作成方法</h2>
+      <label class="option"><input id="shuffleCheck" type="checkbox" checked><span><b>参加者をランダム配置</b><small>チェックを外すと入力順に配置します</small></span></label>
+      <label class="option"><input id="thirdPlaceCheck" type="checkbox"><span><b>3位決定戦を表示</b><small>準決勝の敗者同士で行います</small></span></label>
+      <div class="info"><span>対応数</span><strong>2〜16組</strong><p>3・5・6・7組などの場合は、不戦勝を自動で配置します。</p></div>
+      <button id="createButton" class="primary large" type="button">トーナメント表を作成</button>
+    </section>
+  </section>
+
+  <section id="tournamentSection" class="card tournament-card hidden">
+    <div class="result-header">
+      <div><p class="step">TOURNAMENT</p><h2 id="tournamentTitle">トーナメント表</h2><p id="statusText">試合の勝者を選んでください。</p></div>
+      <div class="buttons"><button id="resetResultsButton" class="secondary" type="button">結果をリセット</button><button id="copyButton" class="secondary" type="button">結果をコピー</button></div>
+    </div>
+    <p id="copyMessage" class="success" aria-live="polite"></p>
+    <div class="scroll-note">横にスクロールして全ラウンドを確認できます。</div>
+    <div id="bracket" class="bracket"></div>
+    <section id="thirdPlacePanel" class="third-place hidden"><h3>3位決定戦</h3><div id="thirdPlaceMatch"></div></section>
+    <section id="championPanel" class="champion hidden"><span>🏆 優勝</span><strong id="championName"></strong></section>
+  </section>
+
+  <section class="card howto"><h2>使い方</h2><ol><li>参加者名またはチーム名を1行ずつ入力します。</li><li>ランダム配置の有無を選び、トーナメント表を作成します。</li><li>各試合で勝者の名前を押すと、次のラウンドへ進みます。</li><li>間違えた場合は同じ試合でもう一方を押すか、結果をリセットします。</li></ol></section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
